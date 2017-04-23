@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Demo_suite" verbose="1" >
+  <test name="Login_test" >
+  	<classes>
+      <class name="TestClasses.HomePageTest.java"/>
+    </classes>
+ </test>
+</suite>
