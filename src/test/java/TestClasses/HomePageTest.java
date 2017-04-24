@@ -2,6 +2,7 @@ package TestClasses;
 
 import java.util.Properties;
 
+import junit.framework.Assert;
 import Operation.ReadObjectRepo;
 import Operation.UIOperation;
 import common.BaseTest;
@@ -34,5 +35,11 @@ public class HomePageTest extends BaseTest{
                 System.out.println("New Testcase->" + row.getCell(0).toString() + " Started");
             }
         }
+    Assert.assertEquals("https://enterprise-demo.orangehrmlive.com/dashboad", driver.getCurrentUrl(), "Expected URL doesn't match with the actual URL.");
     }
+	
+	@Test(dependsOnMethods = { "testLogin" })
+	public void testLogout(){
+		
+	}
 }
