@@ -47,6 +47,8 @@ public class UIOperation {
             return By.linkText(p.getProperty(objectName));
         else if(objectType.equalsIgnoreCase("PARTIALLINK"))
             return By.partialLinkText(p.getProperty(objectName));
+        else if(objectType.equalsIgnoreCase("ID"))
+            return By.id(p.getProperty(objectName));
         else
             throw new Exception("Invalid object type.");
     }

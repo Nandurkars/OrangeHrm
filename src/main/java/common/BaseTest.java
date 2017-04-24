@@ -13,9 +13,8 @@ public class BaseTest {
 	public void launchBrowser(){
 		 //setWebdriverCapabilities();
 		 System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//lib//chromedriver.exe");
-		 WebDriver driver = new ChromeDriver();
+		 driver = new ChromeDriver();
 		 driver.manage().window().maximize();
-		 driver.get("http://opensource.demo.orangehrmlive.com/");
 	}
 	
 	@AfterClass

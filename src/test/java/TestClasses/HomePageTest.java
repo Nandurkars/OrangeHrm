@@ -1,6 +1,7 @@
 package TestClasses;
 
 import java.util.Properties;
+
 import Operation.ReadObjectRepo;
 import Operation.UIOperation;
 import common.BaseTest;
@@ -19,7 +20,7 @@ public class HomePageTest extends BaseTest{
 	ReadObjectRepo object = new ReadObjectRepo();
 	Properties allObjects = object.getObjectRepository();
 	UIOperation operation = new UIOperation(driver);
-	Sheet sheet = file.readExcel("C:\\Users\\cdeshpande\\git\\OrangeHrm\\src\\main\\java\\InputData\\HomePageTest.xlsx","HomePageTest.xlsx", "Keyword");
+	Sheet sheet = file.readExcel(System.getProperty("user.dir") + "//InputData//HomePageTest.xlsx","HomePageTest.xlsx", "Keyword");
     int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
     for (int i = 1; i < rowCount + 1 ; i++) {
         Row row = sheet.getRow(i);
