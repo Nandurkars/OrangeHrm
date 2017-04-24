@@ -11,7 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelUtils {
     
     public Sheet readExcel(String filePath, String fileName, String sheetName) throws IOException{
-    File file = new File(filePath + "\\" + fileName);
+    File file = new File(filePath);
     FileInputStream inputStream = new FileInputStream(file);
     Workbook workbook = null;
     String fileExtension = fileName.substring(fileName.indexOf("."));

@@ -9,7 +9,7 @@ public class ReadObjectRepo {
 	
     Properties p = new Properties();
     public Properties getObjectRepository() throws IOException{
-        InputStream stream = new FileInputStream(new File(System.getProperty("user.dir") + "\\src\\objects\\object.properties"));
+        InputStream stream = new FileInputStream(new File("C:\\Users\\cdeshpande\\git\\OrangeHrm\\src\\main\\java\\ObjectRepo\\object.properties"));
         p.load(stream);
     	return p;
     } 
