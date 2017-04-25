@@ -21,12 +21,20 @@ public class HomePageTest extends BaseTest{
 		UIOperation operation = new UIOperation(driver);
 		Sheet sheet = file.readExcel(System.getProperty("user.dir") + "//InputData//HomePageTest.xlsx","HomePageTest.xlsx", "Keyword");
 	    int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
-	    readObectAndPerformOpertions(allObjects, operation, sheet, rowCount);
+	    readObectAndPerformOpertions(allObjects, operation, sheet, rowCount, 0);
 	   // Assert.assertEquals("https://enterprise-demo.orangehrmlive.com/dashboard", driver.getCurrentUrl(), "Expected URL doesn't match with the actual URL.");
     }
 	
 	@Test(dependsOnMethods = { "testLogin" })
-	public void testLogout(){
+	public void testLogout() throws Exception {
 		
-	}
+		ExcelUtils file = new ExcelUtils();
+		ReadObjectRepo object = new ReadObjectRepo();
+		Properties allObjects = object.getObjectRepository();
+		UIOperation operation = new UIOperation(driver);
+		Sheet sheet = file.readExcel(System.getProperty("user.dir") + "//InputData//HomePageTest.xlsx","HomePageTest.xlsx", "Keyword");
+	    int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
+	    readObectAndPerformOpertions(allObjects, operation, sheet, rowCount, 1);
+		
+		}
 }

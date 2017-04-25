@@ -27,9 +27,9 @@ public class BaseTest {
 		driver.quit();
 	}
 	
-	protected void readObectAndPerformOpertions(Properties allObjects, UIOperation operation, Sheet sheet, int rowCount) throws Exception {
+	protected void readObectAndPerformOpertions(Properties allObjects, UIOperation operation, Sheet sheet, int rowCount, int cellValue) throws Exception {
 		for (int i = 1; i < rowCount + 1 ; i++) {
-		    Row row = sheet.getRow(0);
+		    Row row = sheet.getRow(cellValue);
 		    if(row.getCell(0).toString().length() == 0){
 		        System.out.println(row.getCell(1).toString() + "----" + row.getCell(2).toString() + "----" + 
 		        row.getCell(3).toString() + "----" + row.getCell(4).toString());
