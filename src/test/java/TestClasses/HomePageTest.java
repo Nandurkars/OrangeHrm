@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 public class HomePageTest extends BaseTest{
 
-	@Test
+	@Test(priority = 0)
 	public void testLogin() throws Exception {
 		
 		ExcelUtils file = new ExcelUtils();
@@ -25,7 +25,7 @@ public class HomePageTest extends BaseTest{
 	   // Assert.assertEquals("https://enterprise-demo.orangehrmlive.com/dashboard", driver.getCurrentUrl(), "Expected URL doesn't match with the actual URL.");
     }
 	
-	@Test(dependsOnMethods = { "testLogin" })
+	@Test(dependsOnMethods = { "testEmployeeSearch" })
 	public void testLogout() throws Exception {
 		
 		ExcelUtils file = new ExcelUtils();
@@ -34,7 +34,20 @@ public class HomePageTest extends BaseTest{
 		UIOperation operation = new UIOperation(driver);
 		Sheet sheet = file.readExcel(System.getProperty("user.dir") + "//InputData//HomePageTest.xlsx","HomePageTest.xlsx", "Keyword");
 	    int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
-	    readObectAndPerformOpertions(allObjects, operation, sheet, rowCount, 1);
+	    readObectAndPerformOpertions(allObjects, operation, sheet, rowCount, 0);
 		
 		}
+	
+	@Test(dependsOnMethods = { "testLogin" })
+	public void testEmployeeSearch() throws Exception {
+		ExcelUtils file = new ExcelUtils();
+		ReadObjectRepo object = new ReadObjectRepo();
+		Properties allObjects = object.getObjectRepository();
+		UIOperation operation = new UIOperation(driver);
+		Sheet sheet = file.readExcel(System.getProperty("user.dir") + "//InputData//HomePageTest.xlsx","HomePageTest.xlsx", "Keyword");
+	    int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
+	    readObectAndPerformOpertions(allObjects, operation, sheet, rowCount, 0);
+		
+	}
+	
 }
