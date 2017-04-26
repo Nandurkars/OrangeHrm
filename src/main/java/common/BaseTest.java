@@ -1,8 +1,10 @@
 package common;
 
+import java.io.IOException;
 import java.util.Properties;
 
 import net.sourceforge.htmlunit.corejs.javascript.ast.SwitchCase;
+import utilities.ExcelUtils;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -12,6 +14,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+import Operation.ReadObjectRepo;
 import Operation.UIOperation;
 
 public class BaseTest {
@@ -65,5 +68,13 @@ public class BaseTest {
 	        	uIoperation.perform(allObjects, operation, objectName, objectType, objectValue);
 	        }
 	    }
+	}
+	
+	protected void executeTest(String filePath, String fileName, String sheetName, String tag) throws IOException, Exception {
+		ExcelUtils file = new ExcelUtils();
+		ReadObjectRepo object = new ReadObjectRepo();
+		Properties allObjects = object.getObjectRepository();
+		Sheet sheet = file.readExcel(filePath, fileName, sheetName);
+	    readObectAndPerformOpertions(allObjects, sheet, tag, driver);
 	}
 }
