@@ -20,7 +20,6 @@ public class HomePageTest extends BaseTest{
 		Sheet sheet = file.readExcel(System.getProperty("user.dir") + "//InputData//HomePageTest.xlsx","HomePageTest.xlsx", "Keyword");
 	    String tag = "login";
 	    readObectAndPerformOpertions(allObjects, sheet, tag, driver);
-	    Thread.sleep(5000);
 	    Assert.assertEquals("http://opensource.demo.orangehrmlive.com/index.php/dashboard", driver.getCurrentUrl(), "Expected URL doesn't match with the actual URL.");
     }
 	

@@ -30,13 +30,10 @@ public class BaseTest {
 	protected void readObectAndPerformOpertions(Properties allObjects, Sheet sheet, String tag, WebDriver driver) throws Exception {
 		UIOperation uIoperation = new UIOperation(driver);
 		boolean isRowStarted = false;
-		tag="signin";
-		int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
+		int rowCount = sheet.getLastRowNum();
 		for (int i = 1; i < rowCount + 1; i++) {
 	        Row row = sheet.getRow(i);
-	       // System.out.println(row.getCell(0));
-	        if((row.getCell(0) !=null && row.getCell(0).toString().trim().equalsIgnoreCase(tag)) || isRowStarted){
-	        	
+	        if((row.getCell(0) != null && row.getCell(0).toString().trim().equalsIgnoreCase(tag)) || isRowStarted){
 	        	if(row.getCell(0) != null && !row.getCell(0).toString().trim().isEmpty() && isRowStarted){
 	        		break;
 	        	}
@@ -46,7 +43,7 @@ public class BaseTest {
 	        	String objectName = row.getCell(2).toString();
 	        	String objectType = row.getCell(3).toString();
 	        	String objectValue = row.getCell(4).toString();
-	        	//uIoperation.perform(allObjects, operation, objectName, objectType, objectValue);
+	        	uIoperation.perform(allObjects, operation, objectName, objectType, objectValue);
 	        }
 	    }
 	}

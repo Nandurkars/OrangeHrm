@@ -13,7 +13,6 @@ public class UIOperation {
     }
     
     public void perform(Properties p,String operation,String objectName,String objectType,String value) throws Exception{
-        
     	System.out.println("");
         switch (operation.toUpperCase()) {
         case "CLICK":
