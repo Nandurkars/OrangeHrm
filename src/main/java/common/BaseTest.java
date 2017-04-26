@@ -2,9 +2,12 @@ package common;
 
 import java.util.Properties;
 
+import net.sourceforge.htmlunit.corejs.javascript.ast.SwitchCase;
+
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -17,9 +20,25 @@ public class BaseTest {
 	
 	@BeforeClass
 	public void launchBrowser(){
-		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
-		 driver = new SafariDriver();
-		 driver.manage().window().maximize();
+		
+		String systemOS = System.getProperty("os.name");
+		
+		switch (systemOS) {
+		case "Windows 8.1":
+		case "Windows 8":
+		case "Windows 10":
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//lib//chromedriver.exe");
+			driver = new ChromeDriver();
+			driver.manage().window().maximize();
+			break;
+
+		default:
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//lib//chromedriver.exe");
+			driver = new SafariDriver();
+			driver.manage().window().maximize();
+			break;
+		}
+		
 	}
 	
 	@AfterClass
