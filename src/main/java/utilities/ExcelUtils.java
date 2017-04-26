@@ -11,7 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtils {
     
-    public Sheet readExcel(String filePath, String fileName) throws IOException{
+    public Sheet readExcel(String filePath, String fileName, String sheetName) throws IOException{
     File file = new File(filePath);
     FileInputStream inputStream = new FileInputStream(file);
     Workbook workbook = null;
@@ -20,9 +20,9 @@ public class ExcelUtils {
     	workbook = new XSSFWorkbook(inputStream);
     else if(fileExtension.equals(".xls"))
     	workbook = new HSSFWorkbook(inputStream);
-    Sheet sheet = workbook.getSheet(fileName.replace(".xlsx", ""));
+    Sheet guru99Sheet = workbook.getSheet(sheetName);
     workbook.close();
-    return sheet;   
+    return guru99Sheet;   
     } 
 }
 

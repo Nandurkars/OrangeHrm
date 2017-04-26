@@ -16,9 +16,9 @@ public class HomePageTest extends BaseTest{
 	ExcelUtils file = new ExcelUtils();
 	ReadObjectRepo object = new ReadObjectRepo();
 	
-	private void executeTest(String excelPath, String sheetName, String keyword, String objectPath) throws Exception{
+	private void executeTest(String path, String sheetName, String keyword, String objectPath) throws Exception{
 		Properties allObjects = object.getObjectRepository(objectPath);
-		Sheet sheet = file.readExcel(excelPath, sheetName);
+		Sheet sheet = file.readExcel(path, sheetName, keyword);
 	    String tag = "login";
 	    readObectAndPerformOpertions(allObjects, sheet, tag);
 	}
