@@ -2,8 +2,6 @@ package common;
 
 import java.util.Properties;
 
-import net.sourceforge.htmlunit.corejs.javascript.ast.SwitchCase;
-
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.openqa.selenium.WebDriver;
@@ -46,8 +44,8 @@ public class BaseTest {
 		driver.quit();
 	}
 	
-	protected void readObectAndPerformOpertions(Properties allObjects, Sheet sheet, String tag, WebDriver driver) throws Exception {
-		UIOperation uIoperation = new UIOperation(driver);
+	protected void readObectAndPerformOpertions(Properties allObjects, Sheet sheet, String tag) throws Exception {
+		UIOperation uIoperation = new UIOperation(this.driver);
 		boolean isRowStarted = false;
 		int rowCount = sheet.getLastRowNum();
 		for (int i = 1; i < rowCount + 1; i++) {
