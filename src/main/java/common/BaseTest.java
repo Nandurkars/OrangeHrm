@@ -45,7 +45,7 @@ public class BaseTest {
 	}
 	
 	protected void readObectAndPerformOpertions(Properties allObjects, Sheet sheet, String tag) throws Exception {
-		UIOperation uIoperation = new UIOperation(this.driver);
+		UIOperation uIoperation = new UIOperation(driver);
 		boolean isRowStarted = false;
 		int rowCount = sheet.getLastRowNum();
 		for (int i = 1; i < rowCount + 1; i++) {
