@@ -13,20 +13,23 @@ public class UIOperation {
     }
     
     public void perform(Properties p,String operation,String objectName,String objectType,String value) throws Exception{
-        
     	System.out.println("");
         switch (operation.toUpperCase()) {
         case "CLICK":
             driver.findElement(this.getObject(p,objectName,objectType)).click();
+            Thread.sleep(2000);
             break;
         case "SETTEXT":
             driver.findElement(this.getObject(p,objectName,objectType)).sendKeys(value);
+            Thread.sleep(2000);
             break;
         case "GOTOURL":
             driver.get(p.getProperty(value));
+            Thread.sleep(2000);
             break;
         case "GETTEXT":
             driver.findElement(this.getObject(p,objectName,objectType)).getText();
+            Thread.sleep(000);
             break;
         default:
             break;

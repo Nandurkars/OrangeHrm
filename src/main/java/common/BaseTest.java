@@ -2,10 +2,13 @@ package common;
 
 import java.util.Properties;
 
+import net.sourceforge.htmlunit.corejs.javascript.ast.SwitchCase;
+
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -17,9 +20,25 @@ public class BaseTest {
 	
 	@BeforeClass
 	public void launchBrowser(){
-		 System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//lib//chromedriver.exe");
-		 driver = new ChromeDriver();
-		 driver.manage().window().maximize();
+		
+		String systemOS = System.getProperty("os.name");
+		
+		switch (systemOS) {
+		case "Windows 8.1":
+		case "Windows 8":
+		case "Windows 10":
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//lib//chromedriver.exe");
+			driver = new ChromeDriver();
+			driver.manage().window().maximize();
+			break;
+
+		default:
+			//System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//lib//chromedriver.exe");
+			driver = new SafariDriver();
+			driver.manage().window().maximize();
+			break;
+		}
+		
 	}
 	
 	@AfterClass
@@ -27,17 +46,24 @@ public class BaseTest {
 		driver.quit();
 	}
 	
-	protected void readObectAndPerformOpertions(Properties allObjects, UIOperation operation, Sheet sheet, int rowCount, int rowIndex) throws Exception {
-		for (int i = 1; i < rowCount + 1 ; i++) {
-		    Row row = sheet.getRow(rowIndex);
-		    if(row.getCell(0).toString().length() == 0){
-		        System.out.println(row.getCell(1).toString() + "----" + row.getCell(2).toString() + "----" + 
-		        row.getCell(3).toString() + "----" + row.getCell(4).toString());
-		        operation.perform(allObjects, row.getCell(1).toString(), row.getCell(2).toString(),
-				row.getCell(3).toString(), row.getCell(4).toString());
-		    }
-		    else
-		            System.out.println("New Testcase->" + row.getCell(0).toString() + " Started");
-		    }
+	protected void readObectAndPerformOpertions(Properties allObjects, Sheet sheet, String tag, WebDriver driver) throws Exception {
+		UIOperation uIoperation = new UIOperation(driver);
+		boolean isRowStarted = false;
+		int rowCount = sheet.getLastRowNum();
+		for (int i = 1; i < rowCount + 1; i++) {
+	        Row row = sheet.getRow(i);
+	        if((row.getCell(0) != null && row.getCell(0).toString().trim().equalsIgnoreCase(tag)) || isRowStarted){
+	        	if(row.getCell(0) != null && !row.getCell(0).toString().trim().isEmpty() && isRowStarted){
+	        		break;
+	        	}
+	        	isRowStarted = true;
+	        	System.out.println(row.getCell(1).toString() + "*****" + row.getCell(2).toString() + "*****" + row.getCell(3).toString() + "*****" + row.getCell(4).toString());
+	        	String operation = row.getCell(1).toString();
+	        	String objectName = row.getCell(2).toString();
+	        	String objectType = row.getCell(3).toString();
+	        	String objectValue = row.getCell(4).toString();
+	        	uIoperation.perform(allObjects, operation, objectName, objectType, objectValue);
+	        }
+	    }
 	}
 }
