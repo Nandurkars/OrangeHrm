@@ -33,7 +33,7 @@ public class BaseTest {
 			break;
 
 		default:
-			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//lib//chromedriver.exe");
+			//System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//lib//chromedriver.exe");
 			driver = new SafariDriver();
 			driver.manage().window().maximize();
 			break;
