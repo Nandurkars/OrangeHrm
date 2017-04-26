@@ -21,6 +21,7 @@ public class ExcelUtils {
     else if(fileExtension.equals(".xls"))
     	workbook = new HSSFWorkbook(inputStream);
     Sheet guru99Sheet = workbook.getSheet(sheetName);
+    workbook.close();
     return guru99Sheet;   
     } 
 }
