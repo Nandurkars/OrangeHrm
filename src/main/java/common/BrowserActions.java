@@ -22,11 +22,11 @@ public class BrowserActions {
 	}
 	
 	public boolean isElementDisplayed(WebElement element){
-		applyImplicitWaitToAnElement(element);
+		applyImplicitWait();
 		return element.isDisplayed();
 	}
 	
-	public void applyImplicitWaitToAnElement(WebElement element){
+	public void applyImplicitWait(){
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	

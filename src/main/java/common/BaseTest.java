@@ -3,7 +3,6 @@ package common;
 import java.io.IOException;
 import java.util.Properties;
 
-import net.sourceforge.htmlunit.corejs.javascript.ast.SwitchCase;
 import utilities.ExcelUtils;
 
 import org.apache.poi.ss.usermodel.Row;
